@@ -21,7 +21,8 @@ namespace PlannerApp
       builder.RootComponents.Add<App>("#app");
 
       builder.ConfigureHttpClientBuilder();
-      builder.ConfigureMudBlazor();      
+      builder.ConfigureMudBlazor();
+      builder.ConfigureExternalLibs();
 
       await builder.Build().RunAsync();
     }
