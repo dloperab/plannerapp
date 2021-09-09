@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,7 +25,7 @@ namespace PlannerApp.Infrastructure
         var token = await _localStorageService.GetItemAsStringAsync(Constants.LocalStorageTokenKey);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
       }
-      Console.WriteLine("[INFO] AuthorizationMessageHandler called...");
+
       return await SendAsync(request, cancellationToken);
     }
   }

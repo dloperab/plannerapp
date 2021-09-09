@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Components.Authorization;
 
 using MudBlazor.Services;
 using Blazored.LocalStorage;
 
 using PlannerApp.Infrastructure;
+using PlannerApp.Shared.Contracts.V2;
 
 namespace PlannerApp.Extensions
 {
@@ -20,11 +22,17 @@ namespace PlannerApp.Extensions
     {
       builder.Services.AddHttpClient("PlannerApp.Api", client =>
       {
-        client.BaseAddress = new Uri("https://plannerapp-api.azurewebsites.net/");
+        client.BaseAddress = new Uri(ApiRoutes.Root);
       }).AddHttpMessageHandler<AuthorizationMessageHandler>(); ;
 
       builder.Services.AddTransient<AuthorizationMessageHandler>();
       builder.Services.AddScoped(sp => sp.GetService<IHttpClientFactory>().CreateClient("PlannerApp.Api"));
+    }
+
+    public static void ConfigureAuthorization(this WebAssemblyHostBuilder builder)
+    {
+      builder.Services.AddAuthorizationCore();
+      builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
     }
 
     public static void ConfigureMudBlazor(this WebAssemblyHostBuilder builder)
