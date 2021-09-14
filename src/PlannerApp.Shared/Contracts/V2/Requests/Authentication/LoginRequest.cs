@@ -10,7 +10,7 @@ namespace PlannerApp.Shared.Contracts.V2.Requests.Authentication
     public string Email { get; set; }
 
     [Required]
-    [StringLength(50)]
+    [StringLength(20, MinimumLength = 6)]
     public string Password { get; set; }
   }
 }

@@ -10,6 +10,7 @@ namespace PlannerApp.Shared.Infrastructure
   {
     protected Constants() { }
 
-    public const string LocalStorageTokenKey = "access_token";
+    public const string LocalStorageTokenKey = "token_access";
+    public const string LocalStorageTokenExpiryDate = "token_expiry_date";
   }
 }

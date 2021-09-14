@@ -27,6 +27,7 @@ namespace PlannerApp.Infrastructure
         // Get token and read claims
         var tokenString = await _localStorageService.GetItemAsStringAsync(Constants.LocalStorageTokenKey);
         var tokenHandler = new JwtSecurityTokenHandler();
+
         var token = tokenHandler.ReadJwtToken(tokenString);
         var identity = new ClaimsIdentity(token.Claims, "Bearer");
         var user = new ClaimsPrincipal(identity);

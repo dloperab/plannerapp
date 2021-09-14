@@ -1,7 +1,8 @@
 ﻿@namespace PlannerApp.Components
 
-<EditForm Model="_model" OnValidSubmit="LoginAsync">
+<EditForm Model="_model" OnValidSubmit="LoginUserAsync">
   <DataAnnotationsValidator />
+
   <MudCard>
     <MudCardHeader>
       <CardHeaderContent>
@@ -9,17 +10,29 @@
       </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
-      <MudTextField Label="Email" HelperText="Required" 
-                    @bind-Value="_model.Email" For="@(() => _model.Email)" />
+      <MudTextField Label="Email" HelperText="Required"
+                    @bind-Value="@_model.Email" />
       <MudTextField Label="Password" HelperText="Required" Class="mt-3"
-                    InputType="InputType.Password" @bind-Value="_model.Password" 
-                    For="@(() => _model.Password)" />
+                    InputType="InputType.Password" @bind-Value="@_model.Password" />
+
+      <ValidationSummary />
+
+      @if (!string.IsNullOrWhiteSpace(_errorMessage))
+      {
+        <MudAlert Severity="Severity.Error" Class="my-2" Variant="Variant.Filled">
+          @_errorMessage
+        </MudAlert>
+      }
     </MudCardContent>
     <MudCardActions>
-      <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Login</MudButton>
-      <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Class="ml-1">Register</MudButton>
+      <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled"
+                 Color="Color.Primary" Disabled="_isBusy">Login</MudButton>
+      <MudButton Variant="Variant.Outlined" Color="Color.Secondary"
+                 Class="ml-1" Disabled="_isBusy">Register</MudButton>
     </MudCardActions>
   </MudCard>
-
-  <ValidationSummary />
 </EditForm>
+
+@code {
+
+}

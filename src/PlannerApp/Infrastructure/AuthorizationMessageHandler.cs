@@ -26,7 +26,7 @@ namespace PlannerApp.Infrastructure
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
       }
 
-      return await SendAsync(request, cancellationToken);
+      return await base.SendAsync(request, cancellationToken);
     }
   }
 }

@@ -23,26 +23,22 @@ namespace PlannerApp.Extensions
       builder.Services.AddHttpClient("PlannerApp.Api", client =>
       {
         client.BaseAddress = new Uri(ApiRoutes.Root);
-      }).AddHttpMessageHandler<AuthorizationMessageHandler>(); ;
+      }).AddHttpMessageHandler<AuthorizationMessageHandler>();
 
       builder.Services.AddTransient<AuthorizationMessageHandler>();
       builder.Services.AddScoped(sp => sp.GetService<IHttpClientFactory>().CreateClient("PlannerApp.Api"));
+    }
+
+    public static void ConfigureExternalLibs(this WebAssemblyHostBuilder builder)
+    {
+      builder.Services.AddMudServices();
+      builder.Services.AddBlazoredLocalStorage();
     }
 
     public static void ConfigureAuthorization(this WebAssemblyHostBuilder builder)
     {
       builder.Services.AddAuthorizationCore();
       builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
-    }
-
-    public static void ConfigureMudBlazor(this WebAssemblyHostBuilder builder)
-    {
-      builder.Services.AddMudServices();
-    }
-
-    public static void ConfigureExternalLibs(this WebAssemblyHostBuilder builder)
-    {
-      builder.Services.AddBlazoredLocalStorage();
     }
   }
 }
