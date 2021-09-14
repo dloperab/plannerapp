@@ -8,14 +8,14 @@
 
 <AuthorizeView>
   <Authorized>
-    <MudMenu Icon="@Icons.Filled.Person" Color="Color.Secondary"
+    <MudMenu Icon="@Icons.Filled.Person" Color="Color.Inherit"
              Direction="Direction.Right" OffsetY="true">
       <MudMenuItem>Welcome @context.User.FindFirst(ClaimTypes.GivenName).Value</MudMenuItem>
       <MudMenuItem OnClick="LogOutAsync">LogOut</MudMenuItem>
     </MudMenu>
   </Authorized>
   <NotAuthorized>
-    <MudIconButton Icon="@Icons.Filled.Login" Color="Color.Secondary"
+    <MudIconButton Icon="@Icons.Filled.Login" Color="Color.Inherit"
                    OnClick='() => NavManager.NavigateTo("/authentication/login")' />
   </NotAuthorized>
 </AuthorizeView>
