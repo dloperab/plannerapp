@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\V2\Requests\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
 
