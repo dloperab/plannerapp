@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
+using PlannerApp.Client.Services.Infrastructure;
 using PlannerApp.Extensions;
 
 namespace PlannerApp
@@ -23,6 +23,7 @@ namespace PlannerApp
       builder.ConfigureHttpClientBuilder();
       builder.ConfigureExternalLibs();
       builder.ConfigureAuthorization();
+      builder.Services.AddClientServices();
 
       await builder.Build().RunAsync();
     }
