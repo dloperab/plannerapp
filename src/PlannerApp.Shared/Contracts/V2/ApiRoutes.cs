@@ -10,6 +10,7 @@ namespace PlannerApp.Shared.Contracts.V2
     public static class Auth
     {
       public const string Login = Base + "/auth/login";
+      public const string Register = Base + "/auth/register";
     }
   }
 }
